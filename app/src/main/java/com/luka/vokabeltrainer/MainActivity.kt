@@ -91,7 +91,8 @@ fun Greeting(
         }
         1 ->{
             Column(
-                modifier = modifier.fillMaxSize(),
+                modifier = modifier
+                    .fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
 
@@ -103,16 +104,146 @@ fun Greeting(
                 )
 
                 LazyColumn(
-                    modifier = Modifier.fillMaxHeight(0.7f),
+                    modifier = Modifier.weight(0.7f),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+                    item {
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth(0.9f) // 90% Breite
+                                .height(150.dp)     // 100dp Höhe
+                                .padding(vertical = 8.dp)
+                        ) {
+                            Column(
+                                modifier = Modifier.fillMaxSize(),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Center
+                                ) {
 
+                                Text(
+                                    text = "Vokabel 1",
+                                    fontSize = 35.sp
+                                )
+                            }
+                        }
+                    }
+                    item {
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth(0.9f) // 90% Breite
+                                .height(150.dp)     // 100dp Höhe
+                                .padding(vertical = 8.dp)
+                        ) {
+                            Column(
+                                modifier = Modifier.fillMaxSize(),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Center
+                            ) {
 
+                                Text(
+                                    text = "Vokabel 1",
+                                    fontSize = 35.sp
+                                )
+                            }
+                        }
+                    }
+                    item {
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth(0.9f) // 90% Breite
+                                .height(150.dp)     // 100dp Höhe
+                                .padding(vertical = 8.dp)
+                        ) {
+                            Column(
+                                modifier = Modifier.fillMaxSize(),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Center
+                            ) {
+
+                                Text(
+                                    text = "Vokabel 1",
+                                    fontSize = 35.sp
+                                )
+                            }
+                        }
+                    }
+                    item {
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth(0.9f) // 90% Breite
+                                .height(150.dp)     // 100dp Höhe
+                                .padding(vertical = 8.dp)
+                        ) {
+                            Column(
+                                modifier = Modifier.fillMaxSize(),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Center
+                            ) {
+
+                                Text(
+                                    text = "Vokabel 1",
+                                    fontSize = 35.sp
+                                )
+                            }
+                        }
+                    }
+                    item {
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth(0.9f) // 90% Breite
+                                .height(150.dp)     // 100dp Höhe
+                                .padding(vertical = 8.dp)
+                        ) {
+                            Column(
+                                modifier = Modifier.fillMaxSize(),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Center
+                            ) {
+
+                                Text(
+                                    text = "Vokabel 1",
+                                    fontSize = 35.sp
+                                )
+                            }
+                        }
+                    }
+                    item {
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth(0.9f) // 90% Breite
+                                .height(150.dp)     // 100dp Höhe
+                                .padding(vertical = 8.dp)
+                        ) {
+                            Column(
+                                modifier = Modifier.fillMaxSize(),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.Center
+                            ) {
+
+                                Text(
+                                    text = "Vokabel 1",
+                                    fontSize = 35.sp
+                                )
+                            }
+                        }
+                    }
+
+                }
+
+                Spacer(modifier = Modifier.height(30.dp))
+
+                Button(
+                    onClick = {
+
+                    },
+                ) {
+                    Text(
+                        text = "+",
+                        fontSize = 50.sp
+                    )
                 }
             }
         }
     }
-
-
 
 }
