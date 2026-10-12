@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -15,17 +17,24 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -53,7 +62,21 @@ fun Greeting(
     modifier: Modifier = Modifier
 ) {
 
-    var currentScreen by remember { mutableStateOf(1) }
+    var currentScreen by remember { mutableStateOf(0) }
+    var frontSide by remember { mutableStateOf("") }
+    var backSide by remember { mutableStateOf("") }
+
+    val vocabList = remember { mutableStateListOf(
+        Vocabulary("Hallo", "Hello"),
+        Vocabulary("Bitte", "Please"),
+        Vocabulary("Danke", "Thank you"),
+        Vocabulary("Ja", "Yes"),
+        Vocabulary("Nein", "No"),
+        Vocabulary("Guten Morgen", "Good morning"),
+        Vocabulary("Auf Wiedersehen", "Goodbye"),
+        Vocabulary("Entschuldigung", "Excuse me"),
+        Vocabulary("Wie geht es dir?", "How are you?"),
+    ) }
 
     when (currentScreen) {
 
@@ -107,125 +130,43 @@ fun Greeting(
                     modifier = Modifier.weight(0.7f),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    item {
-                        Card(
-                            modifier = Modifier
-                                .fillMaxWidth(0.9f) // 90% Breite
-                                .height(150.dp)     // 100dp Höhe
-                                .padding(vertical = 8.dp)
-                        ) {
-                            Column(
-                                modifier = Modifier.fillMaxSize(),
-                                horizontalAlignment = Alignment.CenterHorizontally,
-                                verticalArrangement = Arrangement.Center
-                                ) {
 
-                                Text(
-                                    text = "Vokabel 1",
-                                    fontSize = 35.sp
-                                )
-                            }
-                        }
-                    }
-                    item {
+                    items(vocabList) {vocabulary ->
+                        var isClicked by rememberSaveable() {mutableStateOf(false)}
+
                         Card(
+                            border = BorderStroke(1.5.dp, Color.Blue),
+                            colors = CardDefaults.cardColors(
+                                containerColor = Color.Cyan
+                            ),
+                            elevation = CardDefaults.cardElevation(
+                                defaultElevation = 6.dp),
                             modifier = Modifier
-                                .fillMaxWidth(0.9f) // 90% Breite
-                                .height(150.dp)     // 100dp Höhe
+                                .fillMaxWidth(0.9f)
+                                .height(150.dp)
                                 .padding(vertical = 8.dp)
+                                .clickable { isClicked = !isClicked}
                         ) {
                             Column(
                                 modifier = Modifier.fillMaxSize(),
                                 horizontalAlignment = Alignment.CenterHorizontally,
                                 verticalArrangement = Arrangement.Center
                             ) {
+                                if (!isClicked){
+                                    Text(
+                                        text = vocabulary.frontSide,
+                                        fontSize = 35.sp
+                                    )
+                                } else{
+                                    Text(
+                                        text = vocabulary.backSide,
+                                        fontSize = 35.sp
+                                    )
+                                }
 
-                                Text(
-                                    text = "Vokabel 1",
-                                    fontSize = 35.sp
-                                )
                             }
                         }
-                    }
-                    item {
-                        Card(
-                            modifier = Modifier
-                                .fillMaxWidth(0.9f) // 90% Breite
-                                .height(150.dp)     // 100dp Höhe
-                                .padding(vertical = 8.dp)
-                        ) {
-                            Column(
-                                modifier = Modifier.fillMaxSize(),
-                                horizontalAlignment = Alignment.CenterHorizontally,
-                                verticalArrangement = Arrangement.Center
-                            ) {
 
-                                Text(
-                                    text = "Vokabel 1",
-                                    fontSize = 35.sp
-                                )
-                            }
-                        }
-                    }
-                    item {
-                        Card(
-                            modifier = Modifier
-                                .fillMaxWidth(0.9f) // 90% Breite
-                                .height(150.dp)     // 100dp Höhe
-                                .padding(vertical = 8.dp)
-                        ) {
-                            Column(
-                                modifier = Modifier.fillMaxSize(),
-                                horizontalAlignment = Alignment.CenterHorizontally,
-                                verticalArrangement = Arrangement.Center
-                            ) {
-
-                                Text(
-                                    text = "Vokabel 1",
-                                    fontSize = 35.sp
-                                )
-                            }
-                        }
-                    }
-                    item {
-                        Card(
-                            modifier = Modifier
-                                .fillMaxWidth(0.9f) // 90% Breite
-                                .height(150.dp)     // 100dp Höhe
-                                .padding(vertical = 8.dp)
-                        ) {
-                            Column(
-                                modifier = Modifier.fillMaxSize(),
-                                horizontalAlignment = Alignment.CenterHorizontally,
-                                verticalArrangement = Arrangement.Center
-                            ) {
-
-                                Text(
-                                    text = "Vokabel 1",
-                                    fontSize = 35.sp
-                                )
-                            }
-                        }
-                    }
-                    item {
-                        Card(
-                            modifier = Modifier
-                                .fillMaxWidth(0.9f) // 90% Breite
-                                .height(150.dp)     // 100dp Höhe
-                                .padding(vertical = 8.dp)
-                        ) {
-                            Column(
-                                modifier = Modifier.fillMaxSize(),
-                                horizontalAlignment = Alignment.CenterHorizontally,
-                                verticalArrangement = Arrangement.Center
-                            ) {
-
-                                Text(
-                                    text = "Vokabel 1",
-                                    fontSize = 35.sp
-                                )
-                            }
-                        }
                     }
 
                 }
@@ -234,12 +175,59 @@ fun Greeting(
 
                 Button(
                     onClick = {
-
+                        currentScreen = 2
                     },
                 ) {
                     Text(
                         text = "+",
                         fontSize = 50.sp
+                    )
+                }
+            }
+        }
+        2 ->{
+            Column(
+                modifier = modifier
+                    .fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+
+                Spacer(modifier = Modifier.height(30.dp))
+
+                Text(
+                    text = "Kateikarte Hinzufügen",
+                    fontSize = 30.sp
+                )
+
+                Spacer(modifier = Modifier.height(30.dp))
+
+                OutlinedTextField(
+                    value = frontSide,
+                    onValueChange = {frontSide = it},
+                    label = { Text("Vorderseite") }
+                )
+
+                Spacer(modifier = Modifier.height(30.dp))
+
+                OutlinedTextField(
+                    value = backSide,
+                    onValueChange = {backSide = it},
+                    label = { Text("Rückseite") }
+                )
+
+                Spacer(modifier = Modifier.height(30.dp))
+
+                Button(
+                    onClick = {
+                        vocabList.add(Vocabulary(frontSide, backSide))
+
+                        frontSide = ""
+                        backSide = ""
+                        currentScreen = 1
+                    }
+                ) {
+                    Text(
+                        text = "Hinzufügen"
                     )
                 }
             }
