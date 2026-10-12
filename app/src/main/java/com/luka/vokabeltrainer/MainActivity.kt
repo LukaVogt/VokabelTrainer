@@ -2,12 +2,14 @@ package com.luka.vokabeltrainer
 
 import android.R.attr.height
 import android.os.Bundle
+import android.provider.CalendarContract
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -18,6 +20,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.scrollableArea
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -147,23 +150,38 @@ fun Greeting(
                                 .padding(vertical = 8.dp)
                                 .clickable { isClicked = !isClicked}
                         ) {
-                            Column(
-                                modifier = Modifier.fillMaxSize(),
-                                horizontalAlignment = Alignment.CenterHorizontally,
-                                verticalArrangement = Arrangement.Center
-                            ) {
-                                if (!isClicked){
+
+                            Box(){
+
+                                Button(
+                                    onClick = {
+                                        vocabList.remove(vocabulary)
+                                    },
+                                    colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
+                                ) {
                                     Text(
-                                        text = vocabulary.frontSide,
-                                        fontSize = 35.sp
-                                    )
-                                } else{
-                                    Text(
-                                        text = vocabulary.backSide,
-                                        fontSize = 35.sp
+                                        text = "-",
+                                        fontSize = 30.sp
                                     )
                                 }
+                                Column(
+                                    modifier = Modifier.fillMaxSize(),
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                    verticalArrangement = Arrangement.Center
+                                ) {
+                                    if (!isClicked){
+                                        Text(
+                                            text = vocabulary.frontSide,
+                                            fontSize = 35.sp
+                                        )
+                                    } else{
+                                        Text(
+                                            text = vocabulary.backSide,
+                                            fontSize = 35.sp
+                                        )
+                                    }
 
+                                }
                             }
                         }
 
@@ -215,7 +233,7 @@ fun Greeting(
                     label = { Text("Rückseite") }
                 )
 
-                Spacer(modifier = Modifier.height(30.dp))
+                Spacer(modifier = Modifier.height(100.dp))
 
                 Button(
                     onClick = {
@@ -224,10 +242,15 @@ fun Greeting(
                         frontSide = ""
                         backSide = ""
                         currentScreen = 1
-                    }
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Green),
+                    modifier = Modifier
+                        .width(200.dp)
+                        .height(75.dp)
                 ) {
                     Text(
-                        text = "Hinzufügen"
+                        text = "Hinzufügen",
+                        fontSize = 20.sp
                     )
                 }
             }
