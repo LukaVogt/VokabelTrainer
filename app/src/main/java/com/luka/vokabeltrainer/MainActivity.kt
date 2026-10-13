@@ -11,6 +11,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -43,6 +44,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.luka.vokabeltrainer.ui.theme.VokabelTrainerTheme
+import kotlin.uuid.Uuid.Companion.random
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -109,9 +111,27 @@ fun Greeting(
                 ){
                     Text(
                         text = "Vokabeln",
-                        fontSize = 35.sp
+                        fontSize = 30.sp
                     )
                 }
+
+                Spacer(modifier = Modifier.height(40.dp))
+
+                Button(
+                    onClick = {
+                        currentScreen = 3
+                    },
+                    modifier = Modifier
+                        .height(100.dp)
+                        .width(250.dp)
+
+                ) {
+                    Text(
+                        text = "Abfragen",
+                        fontSize = 30.sp
+                    )
+                }
+
             }
 
         }
@@ -148,7 +168,7 @@ fun Greeting(
                                 .fillMaxWidth(0.9f)
                                 .height(150.dp)
                                 .padding(vertical = 8.dp)
-                                .clickable { isClicked = !isClicked}
+                                .clickable { isClicked = !isClicked }
                         ) {
 
                             Box(){
@@ -191,16 +211,36 @@ fun Greeting(
 
                 Spacer(modifier = Modifier.height(30.dp))
 
-                Button(
-                    onClick = {
-                        currentScreen = 2
-                    },
-                ) {
-                    Text(
-                        text = "+",
-                        fontSize = 50.sp
-                    )
+                Row() {
+                    Button(
+                        onClick = {
+                            currentScreen = 2
+                        },
+                    ) {
+                        Text(
+                            text = "+",
+                            fontSize = 50.sp
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.width(50.dp ))
+
+                    Button(
+                        onClick = {
+                            currentScreen = 0
+                        },
+                        modifier = Modifier
+                            .width(150.dp)
+                            .height(75.dp)
+                    ) {
+                        Text(
+                            text = "Zurück",
+                            fontSize = 20.sp
+                        )
+                    }
+
                 }
+
             }
         }
         2 ->{
@@ -222,7 +262,9 @@ fun Greeting(
                 OutlinedTextField(
                     value = frontSide,
                     onValueChange = {frontSide = it},
-                    label = { Text("Vorderseite") }
+                    label = { Text("Vorderseite") },
+                    modifier = Modifier
+                        .fillMaxWidth(0.8f)
                 )
 
                 Spacer(modifier = Modifier.height(30.dp))
@@ -230,7 +272,9 @@ fun Greeting(
                 OutlinedTextField(
                     value = backSide,
                     onValueChange = {backSide = it},
-                    label = { Text("Rückseite") }
+                    label = { Text("Rückseite") },
+                    modifier = Modifier
+                        .fillMaxWidth(0.8f)
                 )
 
                 Spacer(modifier = Modifier.height(100.dp))
@@ -254,6 +298,9 @@ fun Greeting(
                     )
                 }
             }
+        }
+        3 ->{
+
         }
     }
 
